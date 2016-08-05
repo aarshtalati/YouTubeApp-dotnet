@@ -120,9 +120,27 @@ namespace YTPLApp.Domain
                 // of videos uploaded to the authenticated user's channel.
                 var uploadsListId = channel.ContentDetails.RelatedPlaylists.Uploads;
 
-                myResults.Add(uploadsListId);
-            }
+                var nextPageToken = "";
+                while (nextPageToken != null)
+                {
+                    var playlistItemsListRequest = youtubeService.PlaylistItems.List("snippet");
+                    playlistItemsListRequest.PlaylistId = uploadsListId;
+                    playlistItemsListRequest.MaxResults = 50;
+                    playlistItemsListRequest.PageToken = nextPageToken;
 
+                    // Retrieve the list of videos uploaded to the authenticated user's channel.
+                    var playlistItemsListResponse = playlistItemsListRequest.ExecuteAsync().Result;
+
+                    foreach (var playlistItem in playlistItemsListResponse.Items)
+                    {
+                        // Print information about each video.
+                        myResults.Add(string.Format("{0} ({1})", playlistItem.Snippet.Title, playlistItem.Snippet.ResourceId.VideoId));
+                    }
+
+                    nextPageToken = playlistItemsListResponse.NextPageToken;
+
+                }
+            }
 
                 //var video = new Video();
                 //video.Snippet = new VideoSnippet();
