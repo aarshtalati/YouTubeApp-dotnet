@@ -145,7 +145,7 @@ namespace YTPLApp.Domain
         public void GetByPlayListId()
         {
             List<string> myResults = new List<string>();
-            string playListId = "PL2rlbdtNavUAWS3VRVyt-U-hAK-e3ma-x";
+            string playListId = "PLAwxTw4SYaPmYv73ffQ7TE3sZXA38EFkx"; //  "PL2rlbdtNavUAWS3VRVyt-U-hAK-e3ma-x";
             var nextPageToken = "";
 
             var playlistItemsListRequest = youtubeService.PlaylistItems.List("snippet");
