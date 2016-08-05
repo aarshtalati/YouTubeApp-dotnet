@@ -140,12 +140,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\app.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\YouTubeController.cs" />
-    <Compile Include="Domain\YouTube.cs" />
+    <Compile Include="Domain\YouTubeAPI.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

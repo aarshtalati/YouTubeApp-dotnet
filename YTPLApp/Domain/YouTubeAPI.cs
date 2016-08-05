@@ -20,11 +20,11 @@ using YTPLApp.Model;
 
 namespace YTPLApp.Domain
 {
-	public class YouTube
+	public class YouTubeAPI
 	{
 		private static YouTubeService youtubeService;
 
-		public YouTube()
+		public YouTubeAPI()
 		{
 			var filePath = HttpContext.Current.Server.MapPath("~/GoogleKeys.json");
 			if (filePath.Contains("api\\YouTube\\"))

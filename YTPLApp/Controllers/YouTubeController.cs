@@ -26,14 +26,14 @@ namespace YTPLApp.Controllers
 		[Route("api/YouTube/GetVideosByUser/{id}")]
 		public IEnumerable<object> GetVideosByUser(string id)
 		{
-			YouTube yt = new YouTube();
+			YouTubeAPI yt = new YouTubeAPI();
 			return yt.GetByUserId(id);
 		}
 
 		[Route("api/YouTube/GetVideoByPlaylist/{id}")]
 		public IEnumerable<object> GetVideoByPlaylist(string id)
 		{
-			YouTube yt = new YouTube();
+			YouTubeAPI yt = new YouTubeAPI();
 			return yt.GetByPlayListId(id);
 		}
 	}
