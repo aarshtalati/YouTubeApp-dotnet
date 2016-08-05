@@ -83,7 +83,7 @@ namespace YTPLApp.Domain
             //});
 
 
-            
+
         }
 
 
@@ -141,26 +141,27 @@ namespace YTPLApp.Domain
 
                 }
             }
+        }
+        public void GetByPlayListId()
+        {
+            List<string> myResults = new List<string>();
+            string playListId = "PL2rlbdtNavUAWS3VRVyt-U-hAK-e3ma-x";
+            var nextPageToken = "";
 
-                //var video = new Video();
-                //video.Snippet = new VideoSnippet();
-                //video.Snippet.Title = "Default Video Title";
-                //video.Snippet.Description = "Default Video Description";
-                //video.Snippet.Tags = new string[] { "tag1", "tag2" };
-                //video.Snippet.CategoryId = "22"; // See https://developers.google.com/youtube/v3/docs/videoCategories/list
-                //video.Status = new VideoStatus();
-                //video.Status.PrivacyStatus = "unlisted"; // or "private" or "public"
-                //filePath = @"C:\Users\Aarsh\Videos\From Aarsh Talati\dad_bribing_daughter.mp4"; // Replace with path to actual movie file.
-                //using (var fileStream = new FileStream(filePath, FileMode.Open))
-                //{
-                //    var videosInsertRequest = youtubeService.Videos.Insert(video, "snippet,status", fileStream, "video/*");
-                //    videosInsertRequest.ProgressChanged += videosInsertRequest_ProgressChanged;
-                //    videosInsertRequest.ResponseReceived += videosInsertRequest_ResponseReceived;
-                //    await videosInsertRequest.UploadAsync();
-                //}
+            var playlistItemsListRequest = youtubeService.PlaylistItems.List("snippet");
+            playlistItemsListRequest.PlaylistId = playListId;
+            playlistItemsListRequest.MaxResults = 50;
+            playlistItemsListRequest.PageToken = nextPageToken;
 
+            var playlistItemsListResponse = playlistItemsListRequest.ExecuteAsync().Result;
 
+            foreach (var playlistItem in playlistItemsListResponse.Items)
+            {
+                // Print information about each video.
+                myResults.Add(string.Format("{0} ({1})", playlistItem.Snippet.Title, playlistItem.Snippet.ResourceId.VideoId));
             }
 
+            nextPageToken = playlistItemsListResponse.NextPageToken;
         }
+    }
 }

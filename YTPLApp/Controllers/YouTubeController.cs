@@ -12,6 +12,8 @@ namespace YTPLApp.Controllers
     {
         public string Get()
         {
+            YouTube yt = new YouTube();
+            yt.GetByPlayListId();
             return "this is a test";
         }
 
