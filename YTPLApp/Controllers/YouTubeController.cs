@@ -20,10 +20,10 @@ namespace YTPLApp.Controllers
             return "you posted to an empty method";
         }
 
-        public async System.Threading.Tasks.Task<string> PostSingle(string videoId)
+        public string PostSingle(string videoId)
         {
             YouTube yt = new YouTube();
-            yt.Test();
+            yt.PlayList();
             return "you sent: " + videoId;
         }
 
