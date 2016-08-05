@@ -1,39 +1,49 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
+	<title></title>
 </head>
 <body data-ng-app="app">
 
-    <form data-ng-controller="homeController" action="{{action_url}}" method="post">
-        <ul>
-            <li>
-                <label>Search YouTube by</label>
-                <input type="radio" name="youtubeType" data-ng-model="youtubeType" value=" video" /><label>Video</label>
-                <input type="radio" name="youtubeType" data-ng-model="youtubeType" value=" playlist" /><label>Playlist</label>
-            </li>
-            <li>
-                <label>Query</label>
-                <input type="text" data-ng-model="youtubeQuery" />
-            </li>
-            <li>{{youtubeType}}</li>
-            <li>{{action_url}}</li>
-            <li>
-                <input type="submit" />
-            </li>
-        </ul>
-    </form>
+	<form data-ng-controller="homeController" action="{{action_url}}" method="get">
+		<ul>
+			<li>
+				<label>Search YouTube by</label>
+				<input type="radio" name="youtubeType" data-ng-model="youtubeType" value="user" /><label>User</label>
+				<input type="radio" name="youtubeType" data-ng-model="youtubeType" value="playlist" /><label>Playlist</label>
+			</li>
+			<li>
+				<label>Query</label>
+				<input type="text" data-ng-model="youtubeQuery" />
+			</li>
+			<li>{{youtubeType}}</li>
+			<li>{{action_url}}</li>
+			<li>
+				<input type="submit" data-ng-click="validate()"/>
+			</li>
+		</ul>
+	</form>
 
 </body>
 <script type="text/javascript" src="Scripts/angular.min.js"></script>
 <script type="text/javascript">
 	angular.module('app', [])
 		.controller('homeController', ['$scope', function ($scope) {
+
+			var rootApiUrl = 'api/YouTube/'
+
+			$scope.validate = function () {
+				if (($scope.youtubeQuery === undefined || scope.youtubeQuery === '') && ($scope.youtubeType === undefined || scope.youtubeType === ''))
+				{
+					$scope.action_url = rootApiUrl;
+				}
+			};
+
 			$scope.$watch('youtubeType', function () {
-				$scope.action_url = ("api/YouTube/") + ($scope.youtubeType == "video" ? "PostSingle?videoId=" : "PostPlaylist?playlistId=").toString() + ($scope.youtubeQuery).toString();
+				$scope.action_url = rootApiUrl + ($scope.youtubeType == "playlist" ? "GetVideoByPlaylist/" : "GetVideosByUser/").toString() + ($scope.youtubeQuery).toString();
 			})
 			$scope.$watch('youtubeQuery', function () {
-				$scope.action_url = ("api/YouTube/") + ($scope.youtubeType == "video" ? "PostSingle?videoId=" : "PostPlaylist?playlistId=").toString() + ($scope.youtubeQuery).toString();
+				$scope.action_url = rootApiUrl + ($scope.youtubeType == "playlist" ? "GetVideoByPlaylist/" : "GetVideosByUser/").toString() + ($scope.youtubeQuery).toString();
 			})
 	}]);
 </script>

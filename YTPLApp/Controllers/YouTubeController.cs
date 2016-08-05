@@ -8,30 +8,33 @@ using YTPLApp.Domain;
 
 namespace YTPLApp.Controllers
 {
-    public class YouTubeController : ApiController
-    {
-        public string Get()
-        {
-            YouTube yt = new YouTube();
-            yt.GetByPlayListId();
-            return "this is a test";
-        }
+	public class YouTubeController : ApiController
+	{
+		//public string Get()
+		//{
+		//	YouTube yt = new YouTube();
+		//	yt.GetByPlayListId();
+		//	return "this is a test";
+		//}
 
-        public string post()
-        {
-            return "you posted to an empty method";
-        }
+		public HttpResponseMessage Get()
+		{
+			var response = Request.CreateResponse(HttpStatusCode.Unused, "HTTP GET expected playListId or userId");
+			return response;
+		}
 
-        public string PostSingle(string videoId)
-        {
-            YouTube yt = new YouTube();
-            yt.PlayList();
-            return "you sent: " + videoId;
-        }
+		[Route("api/YouTube/GetVideosByUser/{id}")]
+		public IEnumerable<object> GetVideosByUser(string id)
+		{
+			YouTube yt = new YouTube();
+			return yt.GetByUserId(id);
+		}
 
-        public string[] PostPlaylist(string playlistId)
-        {
-            return new string[] { "http://google.com", "http://bing.con" };
-        }
-    }
+		[Route("api/YouTube/GetVideoByPlaylist/{id}")]
+		public IEnumerable<object> GetVideoByPlaylist(string id)
+		{
+			YouTube yt = new YouTube();
+			return yt.GetByPlayListId(id);
+		}
+	}
 }
