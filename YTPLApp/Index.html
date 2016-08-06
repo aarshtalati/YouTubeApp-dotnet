@@ -1,53 +1,56 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title></title>
-	<script type="text/javascript" src="Scripts/angular.min.js"></script>
-	<script type="text/javascript" src="Scripts/app.js"></script>
+    <title></title>
+    <script type="text/javascript" src="Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="Scripts/app.js"></script>
 </head>
 <body data-ng-app="app">
-
-	<!--<form data-ng-controller="homeController" action="{{action_url}}" method="get">-->
-	<form data-ng-submit="submit()" data-ng-controller="youTubeController">
-		<ul style="list-style: none;">
-			<li>
-				<label>Search YouTube by</label>
-				<input type="radio" name="youtubeType" data-ng-model="youtubeType" value="user" /><label>User</label>
-				<input type="radio" name="youtubeType" data-ng-model="youtubeType" value="playlist" /><label>Playlist</label>
-			</li>
-			<li>
-				<label>Query</label>
-				<input type="text" data-ng-model="youtubeQuery" />
-			</li>
-			<li>
-				{{rootApiUrl}}
-				<input type="submit"/>
-			</li>
-		</ul>
-	</form>
+    <div data-ng-controller="youTubeController">
 
 
-	<table border="1" style="width:100%;">
-		<thead>
-			<tr>
-				<th>Video</th>
-				<th>Description</th>
-				<th>Published</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr data-ng-repeat="result in results">
-				<td>
-					<!--<a href="{{result.Url}}" target="_blank">{{result.Title}}</a>-->
-					{{result.Url}}
-				</td>
-				<td></td>
-				<td></td>
-			</tr>
-		</tbody>
-		<tfoot>
+        <!--<form data-ng-controller="homeController" action="{{action_url}}" method="get">-->
+        <form data-ng-submit="submit()">
+            <ul style="list-style: none;">
+                <li>
+                    <label>Search YouTube by</label>
+                    <input type="radio" name="youtubeType" data-ng-model="youtubeType" value="user" /><label>User</label>
+                    <input type="radio" name="youtubeType" data-ng-model="youtubeType" value="playlist" /><label>Playlist</label>
+                </li>
+                <li>
+                    <label>Query</label>
+                    <input type="text" data-ng-model="youtubeQuery" />
+                </li>
+                <li>
+                    <input type="submit" />
+                </li>
+            </ul>
+        </form>
 
-		</tfoot>
-	</table>
+
+        <table border="1" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>Video</th>
+                    <th>Description</th>
+                    <th>Published</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="result in results">
+                    <td>
+                        <a href="{{result.Url}}" target="_blank" title="{{result.Title}}">
+                            <img alt="{{result.ThumbnailImageUrl}}" data-ng-src="{{result.ThumbnailImageUrl}}"/>
+                        </a>
+                    </td>
+                    <td>{{result.Description}}</td>
+                    <td>{{result.PublishDate}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </div>
 </body>
 </html>
