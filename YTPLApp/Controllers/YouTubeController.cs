@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using YTPLApp.Domain;
@@ -9,7 +6,7 @@ using YTPLApp.Model;
 
 namespace YTPLApp.Controllers
 {
-	public class YouTubeController : ApiController
+    public class YouTubeController : ApiController
 	{
 		//public string Get()
 		//{

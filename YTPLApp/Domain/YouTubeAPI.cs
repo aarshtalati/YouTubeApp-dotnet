@@ -1,21 +1,12 @@
-﻿using Google.Apis.Auth.OAuth2;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
 using Google.Apis.Services;
-using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using Google.Apis.Upload;
-using System.Diagnostics;
-using Google.Apis.Discovery.v1;
-using Google.Apis.Discovery.v1.Data;
 using YTPLApp.Model;
 
 namespace YTPLApp.Domain
