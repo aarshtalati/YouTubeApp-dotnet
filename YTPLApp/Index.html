@@ -2,10 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-    <script type="text/javascript" src="Scripts/angular.min.js"></script>
-    <script type="text/javascript" src="Scripts/app.js"></script>
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
+
+        li {
+            margin-top: 10px;
+        }
+
+            li:first-child {
+                margin-top: 0;
+            }
+    </style>
 </head>
-<body data-ng-app="app">
+<body data-ng-app="app" data-ng-cloak="" class="ng-cloak">
     <div data-ng-controller="youTubeController">
 
 
@@ -13,7 +24,7 @@
         <form data-ng-submit="submit()">
             <ul style="list-style: none;">
                 <li>
-                    <label>Search YouTube by</label>
+                    <label>Search </</label>
                     <input type="radio" name="youtubeType" data-ng-model="youtubeType" value="user" /><label>User</label>
                     <input type="radio" name="youtubeType" data-ng-model="youtubeType" value="playlist" /><label>Playlist</label>
                 </li>
@@ -22,11 +33,20 @@
                     <input type="text" data-ng-model="youtubeQuery" />
                 </li>
                 <li>
+                    <label>Limit</label>
+                    <input type="number" data-ng-model="youtubeLimit" />
+                </li>
+                <li>
                     <input type="submit" />
                 </li>
             </ul>
         </form>
 
+        <div>
+            Results : {{thinking == true ? 'Working...' : results.length}}
+        </div>
+
+        {{action_url}}
 
         <table border="1" style="width:100%;">
             <thead>
@@ -40,7 +60,7 @@
                 <tr data-ng-repeat="result in results">
                     <td>
                         <a href="{{result.Url}}" target="_blank" title="{{result.Title}}">
-                            <img alt="{{result.ThumbnailImageUrl}}" data-ng-src="{{result.ThumbnailImageUrl}}"/>
+                            <img alt="{{result.Url}}" data-ng-src="{{result.ThumbnailImageUrl}}" />
                         </a>
                     </td>
                     <td>{{result.Description}}</td>
@@ -53,4 +73,6 @@
         </table>
     </div>
 </body>
+<script type="text/javascript" src="Scripts/angular.min.js"></script>
+<script type="text/javascript" src="Scripts/app.js"></script>
 </html>

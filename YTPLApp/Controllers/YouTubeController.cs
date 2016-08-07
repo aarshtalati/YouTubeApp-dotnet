@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using YTPLApp.Domain;
+using YTPLApp.Model;
 
 namespace YTPLApp.Controllers
 {
@@ -23,18 +24,19 @@ namespace YTPLApp.Controllers
 			return response;
 		}
 
-		[Route("api/YouTube/GetVideosByUser/{id}")]
-		public IEnumerable<object> GetVideosByUser(string id)
+		[Route("api/YouTube/GetVideosByUser/{id}/{nextPageToken}")]
+		public YouTubeSearchResult GetVideosByUser(string id, string nextPageToken)
 		{
 			YouTubeAPI yt = new YouTubeAPI();
-			return yt.GetByUserId(id);
-		}
+			return yt.GetByUserId(id, nextPageToken == "~!@" ? "" : nextPageToken);
 
-		[Route("api/YouTube/GetVideoByPlaylist/{id}")]
-		public IEnumerable<object> GetVideoByPlaylist(string id)
+        }
+
+		[Route("api/YouTube/GetVideoByPlaylist/{id}/{nextPageToken}")]
+		public YouTubeSearchResult GetVideoByPlaylist(string id, string nextPageToken)
 		{
 			YouTubeAPI yt = new YouTubeAPI();
-			return yt.GetByPlayListId(id);
+			return yt.GetByPlayListId(id, nextPageToken == "~!@" ? "" : nextPageToken);
 		}
 	}
 }

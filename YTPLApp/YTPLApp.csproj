@@ -147,6 +147,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\YouTubeController.cs" />
     <Compile Include="Domain\YouTubeAPI.cs" />
+    <Compile Include="Model\YouTubeSearchResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
