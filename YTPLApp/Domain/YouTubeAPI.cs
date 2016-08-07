@@ -55,7 +55,7 @@ namespace YTPLApp.Domain
         }
 
 
-        public YouTubeSearchResult GetByUserId(string id, string nextPageToken = "")
+        public YouTubeSearchResult GetByUserId(string id, string nextPageToken = "", int youtubeLimit = 20)
         {
             var myResults = new List<YouTubeVideo>();
             var channelsListRequest = youtubeService.Channels.List("contentDetails");
@@ -73,7 +73,7 @@ namespace YTPLApp.Domain
 
                 var playlistItemsListRequest = youtubeService.PlaylistItems.List("snippet");
                 playlistItemsListRequest.PlaylistId = uploadsListId;
-                playlistItemsListRequest.MaxResults = 20;
+                playlistItemsListRequest.MaxResults = youtubeLimit;
                 playlistItemsListRequest.PageToken = nextPageToken;
 
                 // Retrieve the list of videos uploaded to the authenticated user's channel.
@@ -104,7 +104,7 @@ namespace YTPLApp.Domain
         }
 
 
-        public YouTubeSearchResult GetByPlayListId(string id, string nextPageToken = "")
+        public YouTubeSearchResult GetByPlayListId(string id, string nextPageToken = "", int youtubeLimit = 20)
         {
             var playListId = id;
             var myResults = new List<YouTubeVideo>();
@@ -114,7 +114,7 @@ namespace YTPLApp.Domain
 
             playlistItemsListRequest = youtubeService.PlaylistItems.List("snippet");
             playlistItemsListRequest.PlaylistId = playListId;
-            playlistItemsListRequest.MaxResults = 20;
+            playlistItemsListRequest.MaxResults = youtubeLimit;
             playlistItemsListRequest.PageToken = nextPageToken;
 
             try

@@ -21,19 +21,19 @@ namespace YTPLApp.Controllers
 			return response;
 		}
 
-		[Route("api/YouTube/GetVideosByUser/{id}/{nextPageToken}")]
-		public YouTubeSearchResult GetVideosByUser(string id, string nextPageToken)
+		[Route("api/YouTube/GetVideosByUser/{id}/{nextPageToken}/{youtubeLimit}")]
+		public YouTubeSearchResult GetVideosByUser(string id, string nextPageToken, int youtubeLimit)
 		{
 			YouTubeAPI yt = new YouTubeAPI();
-			return yt.GetByUserId(id, nextPageToken == "~!@" ? "" : nextPageToken);
+			return yt.GetByUserId(id, nextPageToken == "~!@" ? "" : nextPageToken, youtubeLimit);
 
         }
 
-		[Route("api/YouTube/GetVideoByPlaylist/{id}/{nextPageToken}")]
-		public YouTubeSearchResult GetVideoByPlaylist(string id, string nextPageToken)
+		[Route("api/YouTube/GetVideoByPlaylist/{id}/{nextPageToken}/{youtubeLimit}")]
+		public YouTubeSearchResult GetVideoByPlaylist(string id, string nextPageToken, int youtubeLimit)
 		{
 			YouTubeAPI yt = new YouTubeAPI();
-			return yt.GetByPlayListId(id, nextPageToken == "~!@" ? "" : nextPageToken);
+			return yt.GetByPlayListId(id, nextPageToken == "~!@" ? "" : nextPageToken, youtubeLimit);
 		}
 	}
 }

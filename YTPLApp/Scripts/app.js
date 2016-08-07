@@ -8,11 +8,12 @@
 
     .controller('youTubeController', ['$scope', 'youTubeService', function ($scope, service) {
         var rootApiUrl = 'api/YouTube/'
-        $scope.results = [];
 
+        $scope.results = [];
+        $scope.youtubeLimit = 10
         $scope.token = '~!@';
         $scope.youtubeQuery = '';
-        $scope.youtubeType = '';
+		$scope.youtubeType = '';
         $scope.thinking = false;
 
         $scope.submit = function () {
@@ -34,12 +35,15 @@
         };
 
         $scope.$watch('youtubeType', function () {
-            $scope.action_url = rootApiUrl + ($scope.youtubeType == "playlist" ? "GetVideoByPlaylist/" : "GetVideosByUser/").toString() + ($scope.youtubeQuery).toString() + "/" + ($scope.token || "~!@").toString();
+            $scope.action_url = rootApiUrl + ($scope.youtubeType == "playlist" ? "GetVideoByPlaylist/" : "GetVideosByUser/").toString() + ($scope.youtubeQuery).toString() + "/" + ($scope.token || "~!@").toString() + "/" + ($scope.youtubeLimit || 10).toString();
         });
         $scope.$watch('youtubeQuery', function () {
-            $scope.action_url = rootApiUrl + ($scope.youtubeType == "playlist" ? "GetVideoByPlaylist/" : "GetVideosByUser/").toString() + ($scope.youtubeQuery).toString() + "/" + ($scope.token || "~!@").toString();
+            $scope.action_url = rootApiUrl + ($scope.youtubeType == "playlist" ? "GetVideoByPlaylist/" : "GetVideosByUser/").toString() + ($scope.youtubeQuery).toString() + "/" + ($scope.token || "~!@").toString() + "/" + ($scope.youtubeLimit || 10).toString();
         })
         $scope.$watch('token', function () {
-            $scope.action_url = rootApiUrl + ($scope.youtubeType == "playlist" ? "GetVideoByPlaylist/" : "GetVideosByUser/").toString() + ($scope.youtubeQuery).toString() + "/" + ($scope.token || "~!@").toString();
+            $scope.action_url = rootApiUrl + ($scope.youtubeType == "playlist" ? "GetVideoByPlaylist/" : "GetVideosByUser/").toString() + ($scope.youtubeQuery).toString() + "/" + ($scope.token || "~!@").toString() + "/" + ($scope.youtubeLimit || 10).toString();
+        });
+        $scope.$watch('youtubeLimit', function () {
+            $scope.action_url = rootApiUrl + ($scope.youtubeType == "playlist" ? "GetVideoByPlaylist/" : "GetVideosByUser/").toString() + ($scope.youtubeQuery).toString() + "/" + ($scope.token || "~!@").toString() + "/" + ($scope.youtubeLimit || 10).toString();
         });
     }]);
