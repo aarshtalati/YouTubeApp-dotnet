@@ -2,6 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+    
     <style type="text/css">
         [ng\:cloak], [ng-cloak], .ng-cloak {
             display: none !important;
@@ -25,8 +30,10 @@
             <ul style="list-style: none;">
                 <li>
                     <label>Search </</label>
-                    <input type="radio" name="youtubeType" data-ng-model="youtubeType" value="user" /><label>User</label>
-                    <input type="radio" name="youtubeType" data-ng-model="youtubeType" value="playlist" /><label>Playlist</label>
+                    <select data-ng-model="youtubeType">
+                        <option value="user" selected="selected">User</option>
+                        <option value="playlist">Play-list</option>
+                    </select>
                 </li>
                 <li>
                     <label>Query</label>
@@ -35,6 +42,8 @@
                 <li>
                     <label>Limit</label>
                     <input type="number" data-ng-model="youtubeLimit" />
+                </li>
+                <li>
                 </li>
                 <li>
                     <input type="submit" />
@@ -71,6 +80,9 @@
         </table>
     </div>
 </body>
+<script type="text/javascript" src="Scripts/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="Scripts/jquery-3.1.0.slim.min.js"></script>
 <script type="text/javascript" src="Scripts/angular.min.js"></script>
 <script type="text/javascript" src="Scripts/app.js"></script>
+<script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
 </html>
